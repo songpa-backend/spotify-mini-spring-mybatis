@@ -22,5 +22,16 @@
         order by music_id DESC
     </select>
 
+    <select id="findMusicById" parameterType="_int" resultMap="MusicResultMap">
+        select
+            music_id
+            , title
+            , artist
+            , genre
+            , duration
+        from musics
+        WHERE music_id = #{musicId}
+    </select>
+
 
 </mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.spotifyminispringmybatis.comment.model.dao.CommentMapper">
+    <resultMap id="CommentResultMap" type="com.ohgiraffers.spotifyminispringmybatis.comment.model.dto.CommentDTO">
+        <id property="comment_id" column="comment_id"/>
+        <result property="content" column="content"/>
+        <result property="user_id" column="user_id"/>
+        <result property="music_id" column="music_id"/>
+    </resultMap>
+
+    <select id="findCommentsByUserAndMusic" parameterType="_int" resultMap="CommentResultMap">
+        select
+        comment_id
+        , content
+        , userId
+        , musicId
+        WHERE music_id = #{musicId}
+        AND comment_id = #{commentId}
+    </select>
+
+</mapper>
