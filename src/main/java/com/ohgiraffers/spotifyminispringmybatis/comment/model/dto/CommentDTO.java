@@ -1,5 +1,6 @@
 package com.ohgiraffers.spotifyminispringmybatis.comment.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
@@ -9,10 +10,14 @@ import lombok.*;
 @ToString
 public class CommentDTO {
 
-    private int comment_id;
+    //@JsonProperty("comment_id")
+    private Integer commentId;
     private String content;
     private int userId;
     private int musicId;
 
+    public int getId() {
+        return this.commentId;
+    }
 
 }

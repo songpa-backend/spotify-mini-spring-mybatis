@@ -4,20 +4,28 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.spotifyminispringmybatis.comment.model.dao.CommentMapper">
     <resultMap id="CommentResultMap" type="com.ohgiraffers.spotifyminispringmybatis.comment.model.dto.CommentDTO">
-        <id property="comment_id" column="comment_id"/>
+        <id property="commentId" column="comment_id"/>
         <result property="content" column="content"/>
-        <result property="user_id" column="user_id"/>
-        <result property="music_id" column="music_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="musicId" column="music_id"/>
     </resultMap>
 
     <select id="findCommentsByUserAndMusic" parameterType="_int" resultMap="CommentResultMap">
-        select
+        SELECT
         comment_id
         , content
-        , userId
-        , musicId
+        , user_id
+        , music_id
+        FROM comments
         WHERE music_id = #{musicId}
-        AND comment_id = #{commentId}
+        AND user_id = #{userId}
     </select>
 
+    <insert id="registComment" parameterType="com.ohgiraffers.spotifyminispringmybatis.comment.model.dto.CommentDTO"
+        useGeneratedKeys = "true" keyProperty="commentId" >
+        INSERT INTO comments
+        ( content, user_id, music_id)
+        values
+        ( #{content}, #{userId}, #{musicId} )
+    </insert>
 </mapper>

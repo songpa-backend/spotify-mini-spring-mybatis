@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface CommentMapper {
 
-    List<CommentDTO> findCommentsByUserAndMusic(@Param("userID") int userId, @Param("musicId") int musicId);
+    List<CommentDTO> findCommentsByUserAndMusic(@Param("userId") int userId, @Param("musicId") int musicId);
 
+    int registComment(CommentDTO newComment);
 }

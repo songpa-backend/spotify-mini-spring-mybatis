@@ -24,6 +24,7 @@ public class MusicController {
         return ResponseEntity.ok(musicService.findAllMusics());
     }
 
+    //http://localhost:3000/music/15
     @GetMapping("/musics/{musicId}")
     public ResponseEntity<MusicDTO> findMusicById(@PathVariable int musicId) {
         MusicDTO music = musicService.findMusicById(musicId);

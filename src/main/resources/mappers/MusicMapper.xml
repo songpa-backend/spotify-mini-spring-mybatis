@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.spotifyminispringmybatis.music.model.dao.MusicMapper">
     <resultMap id="MusicResultMap" type="com.ohgiraffers.spotifyminispringmybatis.music.model.dto.MusicDTO">
-        <id property="music_id" column="music_id"/>
+        <id property="musicId" column="music_id"/>
         <result property="title" column="title"/>
         <result property="artist" column="artist"/>
         <result property="genre" column="genre"/>
@@ -12,24 +12,24 @@
     </resultMap>
 
     <select id="findAllMusics" resultMap="MusicResultMap">
-        select
+        SELECT
             music_id
             , title
             , artist
             , genre
             , duration
-        from musics
+        FROM musics
         order by music_id DESC
     </select>
 
     <select id="findMusicById" parameterType="_int" resultMap="MusicResultMap">
-        select
+        SELECT
             music_id
             , title
             , artist
             , genre
             , duration
-        from musics
+        FROM musics
         WHERE music_id = #{musicId}
     </select>
 
