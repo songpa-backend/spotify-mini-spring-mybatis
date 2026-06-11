@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.spotifyminispringmybatis.music.model.dao.MusicMapper">
+    <resultMap id="MusicResultMap" type="com.ohgiraffers.spotifyminispringmybatis.music.model.dto.MusicDTO">
+        <id property="music_id" column="music_id"/>
+        <result property="title" column="title"/>
+        <result property="artist" column="artist"/>
+        <result property="genre" column="genre"/>
+        <result property="duration" column="duration"/>
+    </resultMap>
+
+    <select id="findAllMusics" resultMap="MusicResultMap">
+        select
+            music_id
+            , title
+            , artist
+            , genre
+            , duration
+        from musics
+        order by music_id DESC
+    </select>
+
+
+</mapper>
