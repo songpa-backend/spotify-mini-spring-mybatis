@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.spotifyminispringmybatis.likes.model.dao.LikeMapper">
+
+    <resultMap id="likeResultMap" type="com.ohgiraffers.spotifyminispringmybatis.likes.model.dto.LikeDTO">
+        <id property="likeId" column="like_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="musicId" column="music_id"/>
+        <result property="musicTitle" column="title"/>
+        <result property="artist" column="artist"/>
+    </resultMap>
+
+    <select id="selectLikesByUser" resultMap="likeResultMap">
+        SELECT
+        l.like_id
+        , l.user_id
+        , l.music_id
+        , m.title
+        , m.artist
+        FROM likes l
+        LEFT JOIN musics m ON l.music_id = m.music_id
+        WHERE l.user_id = #{ userId }
+    </select>
+
+    <insert id="insertLike" useGeneratedKeys="true" keyProperty="likeId">
+        INSERT INTO likes ( user_id , music_id )
+        VALUES ( #{ userId } , #{ musicId } )
+    </insert>
+
+    <delete id="removeLike" parameterType="int">
+        DELETE
+        FROM likes
+        WHERE like_id = #{ likeId }
+    </delete>
+
+    <select id="selectLikeCount" resultType="int">
+        SELECT COUNT(*)
+        FROM likes
+        WHERE user_id = #{ userId }
+        AND music_id = #{ musicId }
+    </select>
+
+</mapper>
