@@ -11,4 +11,5 @@ public interface MusicMapper {
 
     List<MusicDTO> findAllMusics();
 
+    MusicDTO findMusicById(@Param("musicId") int musicId);
 }

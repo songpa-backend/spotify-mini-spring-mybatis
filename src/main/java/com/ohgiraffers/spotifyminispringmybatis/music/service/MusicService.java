@@ -17,4 +17,6 @@ public class MusicService {
     public  List<MusicDTO> findAllMusics() {
         return musicMapper.findAllMusics();
     }
+
+    public MusicDTO findMusicById(int musicId) { return musicMapper.findMusicById(musicId); }
 }
